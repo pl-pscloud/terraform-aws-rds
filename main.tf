@@ -21,25 +21,26 @@ resource "aws_db_instance" "pscloud-rds-instance" {
   tags = {
       Name                = "${var.pscloud_company}_rds_instance_for_${var.pscloud_purpose}_${var.pscloud_env}"
   }
+
 }
 
 resource "aws_db_parameter_group" "pscloud-rds-parameter-gr" {
-  name   = "${var.pscloud_company}-rds-parameter-gr-${var.pscloud_env}"
-  family = "mysql5.7"
+  name                    = "${var.pscloud_company}-rds-parameter-gr-${var.pscloud_env}"
+  family                  = var.pscloud_engine_version
 
   parameter {
-    name  = "character_set_server"
-    value = "utf8"
+    name                  = "character_set_server"
+    value                 = "utf8"
   }
 
   parameter {
-    name  = "character_set_client"
-    value = "utf8"
+    name                  = "character_set_client"
+    value                 = "utf8"
   }
 
   parameter {
-    name  = "max_allowed_packet"
-    value = "1073741824"
+    name                  = "max_allowed_packet"
+    value                 = "1073741824"
   }
 
   tags = {
