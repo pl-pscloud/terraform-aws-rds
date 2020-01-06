@@ -14,7 +14,7 @@ resource "aws_db_instance" "pscloud-rds-instance" {
   db_subnet_group_name    = var.pscloud_rds_subnet_group.name
   parameter_group_name    = aws_db_parameter_group.pscloud-rds-parameter-gr.name
 
-  vpc_security_group_ids  = [ var.pscloud_sec_gr ]
+  vpc_security_group_ids  = var.pscloud_sec_gr
 
   skip_final_snapshot     = true
 
