@@ -26,7 +26,7 @@ resource "aws_db_instance" "pscloud-rds-instance" {
 
 resource "aws_db_parameter_group" "pscloud-rds-parameter-gr" {
   name                    = "${var.pscloud_company}-rds-parameter-gr-${var.pscloud_env}"
-  family                  = var.pscloud_engine_version
+  family                  = join("", [ var.pscloud_engine, var.pscloud_engine_version ])
 
   parameter {
     name                  = "character_set_server"
