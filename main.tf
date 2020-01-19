@@ -19,9 +19,9 @@ resource "aws_db_instance" "pscloud-rds-instance" {
   engine_version          = var.pscloud_engine_version
   instance_class          = var.pscloud_rds_instance_type
 
-  name                    = var.pscloud_company
   username                = random_password.pscloud-user.result
   password                = random_password.pscloud-password.result
+
   db_subnet_group_name    = var.pscloud_rds_subnet_group.name
   parameter_group_name    = aws_db_parameter_group.pscloud-rds-parameter-gr.name
 
