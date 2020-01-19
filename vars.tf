@@ -8,8 +8,5 @@ variable "pscloud_storage" {}
 variable "pscloud_engine" {}
 variable "pscloud_engine_version" {}
 
-variable "pscloud_dbname" {}
-variable "pscloud_dbuser" {}
-
 variable "pscloud_sec_gr" {}
 variable "pscloud_rds_subnet_group" {}

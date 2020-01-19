@@ -3,7 +3,7 @@ output "pscloud_db_endpoint" {
 }
 
 output "pscloud_dbuser" {
-  value = var.pscloud_dbuser
+  value = random_password.pscloud-user.result
 }
 
 output "pscloud_dbpass" {
