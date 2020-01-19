@@ -7,5 +7,5 @@ output "pscloud_dbuser" {
 }
 
 output "pscloud_dbpass" {
-  value = var.pscloud_dbpass
+  value = random_password.pscloud-password.result
 }

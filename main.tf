@@ -1,3 +1,9 @@
+resource "random_password" "pscloud-password" {
+  length = 16
+  special = true
+  override_special = "_%@"
+}
+
 resource "aws_db_instance" "pscloud-rds-instance" {
 
   identifier              = "${var.pscloud_company}-rds-instance-${var.pscloud_env}"
@@ -10,7 +16,7 @@ resource "aws_db_instance" "pscloud-rds-instance" {
 
   name                    = var.pscloud_dbname
   username                = var.pscloud_dbuser
-  password                = var.pscloud_dbpass
+  password                = random_password.pscloud-password.result
   db_subnet_group_name    = var.pscloud_rds_subnet_group.name
   parameter_group_name    = aws_db_parameter_group.pscloud-rds-parameter-gr.name
 
