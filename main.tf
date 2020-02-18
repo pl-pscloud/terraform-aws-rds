@@ -14,6 +14,7 @@ resource "aws_db_instance" "pscloud-rds-instance" {
   identifier              = "${var.pscloud_company}-rds-instance-${var.pscloud_env}"
 
   allocated_storage       = var.pscloud_storage
+  max_allocated_storage   = var.pscloud_storage_max
   storage_type            = "gp2"
 
   storage_encrypted       = var.pscloud_storage_encrypted
