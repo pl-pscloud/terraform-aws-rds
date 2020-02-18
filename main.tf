@@ -20,9 +20,12 @@ resource "aws_db_instance" "pscloud-rds-instance" {
   storage_encrypted       = var.pscloud_storage_encrypted
   kms_key_id              = var.pscloud_kms_key_arn
 
+  backup_retention_period = var.pscloud_backup_retention_period
+
   engine                  = var.pscloud_engine
   engine_version          = var.pscloud_engine_version
   instance_class          = var.pscloud_rds_instance_type
+
 
   username                = random_password.pscloud-user.result
   password                = random_password.pscloud-password.result
