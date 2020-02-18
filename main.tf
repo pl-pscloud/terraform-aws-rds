@@ -15,6 +15,10 @@ resource "aws_db_instance" "pscloud-rds-instance" {
 
   allocated_storage       = var.pscloud_storage
   storage_type            = "gp2"
+
+  storage_encrypted       = var.pscloud_storage_encrypted
+  kms_key_id              = var.pscloud_kms_key_arn
+
   engine                  = var.pscloud_engine
   engine_version          = var.pscloud_engine_version
   instance_class          = var.pscloud_rds_instance_type
@@ -22,7 +26,7 @@ resource "aws_db_instance" "pscloud-rds-instance" {
   username                = random_password.pscloud-user.result
   password                = random_password.pscloud-password.result
 
-  db_subnet_group_name    = var.pscloud_rds_subnet_group.name
+  db_subnet_group_name    = aws_db_subnet_group.pscloud-rds-subnet-group.name
   parameter_group_name    = aws_db_parameter_group.pscloud-rds-parameter-gr.name
 
   vpc_security_group_ids  = var.pscloud_sec_gr
@@ -33,6 +37,10 @@ resource "aws_db_instance" "pscloud-rds-instance" {
       Name                = "${var.pscloud_company}_rds_instance_for_${var.pscloud_purpose}_${var.pscloud_env}"
   }
 
+}
+
+resource "aws_db_subnet_group" "pscloud-rds-subnet-group" {
+  subnet_ids = var.pscloud_rds_subnet_group[*].id
 }
 
 resource "aws_db_parameter_group" "pscloud-rds-parameter-gr" {
