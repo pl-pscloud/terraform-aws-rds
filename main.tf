@@ -48,7 +48,9 @@ resource "aws_db_subnet_group" "pscloud-rds-subnet-group" {
 }
 
 resource "aws_db_parameter_group" "pscloud-rds-parameter-gr" {
-  name                    = "${var.pscloud_company}-rds-parameter-gr-${var.pscloud_env}"
+  count                   = (var.pscloud_create_parameter_group == true) ? 1 : 0
+
+  name                    = "${var.pscloud_company}-rds-parameter-gr-${var.pscloud_env}-${var.pscloud_purpose}"
   family                  = join("", [ var.pscloud_engine, var.pscloud_engine_version ])
 
   parameter {
