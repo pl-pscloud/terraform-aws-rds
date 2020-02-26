@@ -31,7 +31,7 @@ resource "aws_db_instance" "pscloud-rds-instance" {
   password                = random_password.pscloud-password.result
 
   db_subnet_group_name    = aws_db_subnet_group.pscloud-rds-subnet-group.name
-  parameter_group_name    = aws_db_parameter_group.pscloud-rds-parameter-gr.name
+  parameter_group_name    = (var.pscloud_create_parameter_group == true) ? aws_db_parameter_group.pscloud-rds-parameter-gr[0].name : ""
 
   vpc_security_group_ids  = var.pscloud_sec_gr
 
