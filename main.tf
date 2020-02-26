@@ -11,7 +11,7 @@ resource "random_password" "pscloud-user" {
 
 resource "aws_db_instance" "pscloud-rds-instance" {
 
-  identifier              = "${var.pscloud_company}-rds-instance-${var.pscloud_env}"
+  identifier              = "${var.pscloud_company}-rds-instance-${var.pscloud_env}-${var.pscloud_purpose}"
 
   allocated_storage       = var.pscloud_storage
   max_allocated_storage   = var.pscloud_storage_max
