@@ -37,6 +37,8 @@ resource "aws_db_instance" "pscloud-rds-instance" {
 
   skip_final_snapshot     = true
 
+  apply_immediately       = var.pscloud_apply_immediately
+
   tags = {
       Name                = "${var.pscloud_company}_rds_instance_for_${var.pscloud_purpose}_${var.pscloud_env}"
   }
