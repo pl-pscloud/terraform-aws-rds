@@ -1,7 +1,7 @@
 resource "random_password" "pscloud-password" {
   length = 16
   special = true
-  override_special = "_%@ "
+  override_special = "_%@ ///"" 
 }
 
 resource "random_password" "pscloud-user" {
