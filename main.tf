@@ -26,8 +26,8 @@ resource "aws_db_instance" "pscloud-rds-instance" {
   instance_class          = var.pscloud_rds_instance_type
 
 
-  username                = random_password.pscloud-user.result
-  password                = random_password.pscloud-password.result
+  username                = var.pscloud_masteruser_name != "" ? var.pscloud_masteruser_name : random_password.pscloud-user.result
+  password                = var.pscloud_masteruser_password != "" ? var.pscloud_masteruser_password : random_password.pscloud-password.result
 
   db_subnet_group_name    = aws_db_subnet_group.pscloud-rds-subnet-group.name
   parameter_group_name    = (var.pscloud_create_parameter_group == true) ? aws_db_parameter_group.pscloud-rds-parameter-gr[0].name : ""

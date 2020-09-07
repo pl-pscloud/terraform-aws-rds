@@ -21,3 +21,6 @@ variable "pscloud_create_parameter_group" { default = false  }
 variable "pscloud_apply_immediately" { default = false }
 
 variable "pscloud_snapshot_identifier" { default = "" }
+
+variable "pscloud_masteruser_name" { default = "" }
+variable "pscloud_masteruser_password" { default = "" }
