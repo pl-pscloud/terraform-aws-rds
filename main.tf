@@ -1,9 +1,6 @@
 resource "random_password" "pscloud-password" {
   length      = 16
   special     = false
-  min_upper   = 3
-  min_lower   = 3
-  min_numeric = 3
 }
 
 resource "random_password" "pscloud-user" {
