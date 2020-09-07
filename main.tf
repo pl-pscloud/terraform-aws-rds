@@ -39,6 +39,8 @@ resource "aws_db_instance" "pscloud-rds-instance" {
 
   skip_final_snapshot     = true
 
+  snapshot_identifier     = var.pscloud_snapshot_identifier
+
   apply_immediately       = var.pscloud_apply_immediately
 
   tags = {

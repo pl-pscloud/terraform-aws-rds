@@ -19,3 +19,5 @@ variable "pscloud_rds_subnet_group" {}
 variable "pscloud_create_parameter_group" { default = false  }
 
 variable "pscloud_apply_immediately" { default = false }
+
+variable "pscloud_snapshot_identifier" { default = "" }
