@@ -25,7 +25,6 @@ resource "aws_db_instance" "pscloud-rds-instance" {
   engine_version          = var.pscloud_engine_version
   instance_class          = var.pscloud_rds_instance_type
 
-
   username                = var.pscloud_masteruser_name != "" ? var.pscloud_masteruser_name : random_password.pscloud-user.result
   password                = var.pscloud_masteruser_password != "" ? var.pscloud_masteruser_password : random_password.pscloud-password.result
 
@@ -54,22 +53,16 @@ resource "aws_db_parameter_group" "pscloud-rds-parameter-gr" {
   count                   = (var.pscloud_create_parameter_group == true) ? 1 : 0
 
   name                    = "${var.pscloud_company}-rds-parameter-gr-${var.pscloud_env}-${var.pscloud_purpose}"
-  family                  = join("", [ var.pscloud_engine, var.pscloud_engine_version ])
+  family                  = var.pscloud_db_parameter_family
 
-  parameter {
-    name                  = "character_set_server"
-    value                 = "utf8"
+  dynamic "parameter" {
+    for_each = var.pscloud_db_parameters
+    content {
+      name = parameter.value["name"]
+      value = parameter.value["val"]
+    }
   }
 
-  parameter {
-    name                  = "character_set_client"
-    value                 = "utf8"
-  }
-
-  parameter {
-    name                  = "max_allowed_packet"
-    value                 = "1073741824"
-  }
 
   tags = {
     Name                  = "${var.pscloud_company}_rds_parameter_gr_${var.pscloud_env}"
