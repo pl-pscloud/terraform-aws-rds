@@ -46,7 +46,7 @@ resource "aws_db_instance" "pscloud-rds-instance" {
 }
 
 resource "aws_db_subnet_group" "pscloud-rds-subnet-group" {
-  subnet_ids = var.pscloud_rds_subnet_group[*].id
+  subnet_ids = var.pscloud_rds_subnet_group
 }
 
 resource "aws_db_parameter_group" "pscloud-rds-parameter-gr" {
