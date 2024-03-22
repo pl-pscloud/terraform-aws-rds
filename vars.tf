@@ -2,6 +2,8 @@ variable "pscloud_env" {}
 variable "pscloud_company" {}
 variable "pscloud_purpose" {}
 
+variable "pscloud_availability_zone" {}
+
 variable "pscloud_rds_instance_type" {}
 variable "pscloud_storage" {}
 variable "pscloud_storage_max" { default = 0 }
