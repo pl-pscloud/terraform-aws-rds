@@ -14,7 +14,7 @@ resource "aws_db_instance" "pscloud-rds-instance" {
 
   allocated_storage       = var.pscloud_storage
   max_allocated_storage   = var.pscloud_storage_max
-  storage_type            = "gp2"
+  storage_type            = var.pscloud_storage_type
 
   storage_encrypted       = var.pscloud_storage_encrypted
   kms_key_id              = var.pscloud_kms_key_arn
